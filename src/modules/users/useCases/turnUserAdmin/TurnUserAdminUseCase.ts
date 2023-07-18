@@ -10,10 +10,12 @@ class TurnUserAdminUseCase {
 
   execute({ user_id }: IRequest): User {
     const user = this.usersRepository.findById(user_id)
+    const userAdmin = this.usersRepository.turnAdmin(user)
+    console.log('entrou')
 
-    const turnAdmin = this.usersRepository.turnAdmin(user)
+    userAdmin.isAdmin = true
 
-    return turnAdmin
+    return userAdmin
   }
 }
 
