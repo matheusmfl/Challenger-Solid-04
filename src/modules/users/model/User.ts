@@ -1,12 +1,19 @@
 import { v4 as uuidV4 } from "uuid";
 
 class User {
-  id?: string;
+
+  id: string;
+
   name: string;
+
+  admin: boolean;
+
   email: string;
+
   created_at: Date;
-  isAdmin: boolean;
-  updated_at?: Date;
+
+  updated_at: Date;
+
 
   constructor() {
     if (!this.id) {
@@ -15,8 +22,8 @@ class User {
     if (!this.created_at) {
       this.created_at = new Date();
     }
-    if (!this.isAdmin) {
-      this.isAdmin = false;
+    if (!this.admin) {
+      this.admin = false;
     }
   }
 }

@@ -9,11 +9,12 @@ class TurnUserAdminUseCase {
   constructor(private usersRepository: IUsersRepository) { }
 
   execute({ user_id }: IRequest): User {
+    console.log('entrou')
     const user = this.usersRepository.findById(user_id)
     const userAdmin = this.usersRepository.turnAdmin(user)
-    console.log('entrou')
 
-    userAdmin.isAdmin = true
+
+    userAdmin.admin = true
 
     return userAdmin
   }
