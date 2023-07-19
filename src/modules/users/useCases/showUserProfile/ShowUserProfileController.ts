@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
+import { UserNotExistsError } from "../Errors/UserNotExistsError";
 import { ShowUserProfileUseCase } from "./ShowUserProfileUseCase";
 
 class ShowUserProfileController {
@@ -14,8 +15,13 @@ class ShowUserProfileController {
       return response.status(200).json(user)
     }
     catch (err) {
-      return response.status(400).json({ error: err.message })
+      if (err instanceof UserNotExistsError) {
+
+        return response.status(400).json({ error: err.message })
+      }
+      next(err)
     }
+    return response.status(200).send()
   }
 }
 
